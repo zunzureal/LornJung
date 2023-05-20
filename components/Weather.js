@@ -1,59 +1,59 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import PropTypes from 'prop-types';
+import { StyleSheet, View, Text } from 'react-native';
 import { weatherConditions } from '../utils/WeatherConditions';
 
-const Weather = ({ weather, temperature }) => {
-  if (!weather || !weatherConditions[weather]) {
-    // Invalid weather condition
-    return null;
-  }
+const Weather = ({ temperature, weatherCondition }) => {
+  const fallbackWeather = {
+    color: '#fff',
+    icon: 'weather-not-available',
+    title: 'Unknown',
+    subtitle: 'Sorry, weather information unavailable.',
+  };
 
-  const { color, title, subtitle, icon } = weatherConditions[weather];
+  const currentWeather =
+    weatherConditions[weatherCondition] || fallbackWeather;
 
   return (
-    <View style={[styles.weatherContainer, { backgroundColor: color }]}>
+    <View
+      style={[
+        styles.weatherContainer,
+        { backgroundColor: currentWeather.color },
+      ]}
+    >
       <View style={styles.headerContainer}>
-        <MaterialCommunityIcons size={72} name={icon} color="#fff" />
-        <Text style={styles.tempText}>{temperature}˚</Text>
+        <Text style={styles.temperatureText}>{temperature}°C</Text>
       </View>
       <View style={styles.bodyContainer}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Text style={styles.title}>{currentWeather.title}</Text>
+        <Text style={styles.subtitle}>{currentWeather.subtitle}</Text>
       </View>
     </View>
   );
 };
 
-Weather.propTypes = {
-  temperature: PropTypes.number.isRequired,
-  weather: PropTypes.string,
-};
-
 const styles = StyleSheet.create({
   weatherContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   headerContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
-  tempText: {
-    fontSize: 72,
+  temperatureText: {
+    fontSize: 48,
     color: '#fff',
   },
   bodyContainer: {
     flex: 2,
-    alignItems: 'flex-start',
     justifyContent: 'flex-end',
-    paddingLeft: 25,
-    marginBottom: 40,
+    alignItems: 'flex-start',
+    paddingLeft: '10%',
+    marginBottom: '10%',
   },
   title: {
-    fontSize: 60,
+    fontSize: 48,
     color: '#fff',
   },
   subtitle: {
