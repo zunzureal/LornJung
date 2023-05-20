@@ -11,5 +11,11 @@ export const weatherConditions = {
     title: 'Clear',
     subtitle: 'It is sunny outside!',
   },
+  Clouds: {
+    color: '#999999',
+    icon: 'weather-cloudy',
+    title: 'Clouds',
+    subtitle: 'Partly cloudy skies today',
+  },
   // Add more weather conditions as needed
 };
