@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { weatherConditions } from '../utils/WeatherConditions';
 
-const Weather = ({ temperature, weatherCondition }) => {
+const Weather = ({ temperature, weatherCondition, country, name }) => {
   const fallbackWeather = {
     color: '#fff',
     icon: 'weather-not-available',
@@ -22,6 +22,8 @@ const Weather = ({ temperature, weatherCondition }) => {
     >
       <View style={styles.headerContainer}>
         <Text style={styles.temperatureText}>{temperature}°C</Text>
+        <Text style={styles.nameText}>{name}</Text>
+        <Text style={styles.countryText}>{country}</Text>
       </View>
       <View style={styles.bodyContainer}>
         <Text style={styles.title}>{currentWeather.title}</Text>
@@ -36,29 +38,42 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
   headerContainer: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   temperatureText: {
     fontSize: 48,
     color: '#fff',
   },
+  nameText: {
+    fontSize: 37,
+    color: '#fff',
+    marginBottom: 5,
+  },
+  countryText: {
+    fontSize: 24,
+    color: '#fff',
+  },
   bodyContainer: {
     flex: 2,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    paddingLeft: '10%',
-    marginBottom: '10%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 48,
     color: '#fff',
+    textAlign: 'center',
+    marginBottom: 10,
   },
   subtitle: {
     fontSize: 24,
     color: '#fff',
+    textAlign: 'center',
   },
 });
 

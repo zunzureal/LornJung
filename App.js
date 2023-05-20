@@ -10,6 +10,8 @@ export default class App extends React.Component {
     temperature: 0,
     weatherCondition: null,
     error: null,
+    country: null,
+    name: null,
   };
 
   componentDidMount() {
@@ -48,22 +50,19 @@ export default class App extends React.Component {
 
   fetchWeather = (lat = 25, lon = 25) => {
     this.setState({ isLoading: true });
-  
+
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     )
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        const { main, weather } = json;
-        const temperature = main.temp;
-        const weatherCondition = weather[0].main;
-  
         this.setState({
           isLoading: false,
-          temperature,
-          weatherCondition,
-          error: null, // Reset the error if fetching is successful
+          temperature: json.main.temp,
+          weatherCondition: json.weather[0].main,
+          country: json.sys.country,
+          name: json.name,
         });
       })
       .catch((error) => {
@@ -71,10 +70,10 @@ export default class App extends React.Component {
         this.setState({ isLoading: false, error: 'Error Fetching Weather' });
       });
   };
-  
 
   render() {
-    const { isLoading, temperature, weatherCondition, error } = this.state;
+    const { isLoading, temperature, weatherCondition, error, country, name } =
+      this.state;
 
     return (
       <View style={styles.container}>
@@ -86,6 +85,8 @@ export default class App extends React.Component {
           <Weather
             temperature={temperature}
             weatherCondition={weatherCondition}
+            country={country}
+            name={name}
           />
         )}
       </View>
