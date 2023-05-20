@@ -71,7 +71,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { isLoading, temperature, weatherCondition, error, country } =
+    const { isLoading, temperature, weatherCondition, error, country , name } =
       this.state;
 
     return (
@@ -85,6 +85,7 @@ export default class App extends React.Component {
             temperature={temperature}
             weatherCondition={weatherCondition}
             country={country}
+            name={name}
           />
         )}
       </View>

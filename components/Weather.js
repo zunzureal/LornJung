@@ -10,8 +10,7 @@ const Weather = ({ temperature, weatherCondition, country, name }) => {
     subtitle: 'Sorry, weather information unavailable.',
   };
 
-  const currentWeather =
-    weatherConditions[weatherCondition] || fallbackWeather;
+  const currentWeather = weatherConditions[weatherCondition] || fallbackWeather;
 
   const weatherIconUrl = `http://openweathermap.org/img/w/${currentWeather.icon}.png`;
 
