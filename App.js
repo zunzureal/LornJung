@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import * as Location from 'expo-location';
 import { API_KEY } from './utils/WeatherAPIKey';
 import Weather from './components/Weather';
 
 export default class App extends React.Component {
   state = {
-    isLoading: false,
+    isLoading: true,
     temperature: 0,
     weatherCondition: null,
     error: null,
@@ -47,23 +47,16 @@ export default class App extends React.Component {
   }
 
   fetchWeather = (lat = 25, lon = 25) => {
-    this.setState({ isLoading: true });
-  
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     )
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        const { main, weather } = json;
-        const temperature = main.temp;
-        const weatherCondition = weather[0].main;
-  
         this.setState({
           isLoading: false,
-          temperature,
-          weatherCondition,
-          error: null, // Reset the error if fetching is successful
+          temperature: json.main.temp,
+          weatherCondition: json.weather[0].main,
         });
       })
       .catch((error) => {
@@ -71,25 +64,32 @@ export default class App extends React.Component {
         this.setState({ isLoading: false, error: 'Error Fetching Weather' });
       });
   };
-  
 
   render() {
     const { isLoading, temperature, weatherCondition, error } = this.state;
 
-    return (
-      <View style={styles.container}>
-        {isLoading ? (
+    if (isLoading) {
+      return (
+        <View style={styles.container}>
           <Text style={styles.loadingText}>Fetching The Weather</Text>
-        ) : error ? (
+        </View>
+      );
+    } else if (error) {
+      return (
+        <View style={styles.container}>
           <Text style={styles.errorText}>{error}</Text>
-        ) : (
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
           <Weather
             temperature={temperature}
             weatherCondition={weatherCondition}
           />
-        )}
-      </View>
-    );
+        </View>
+      );
+    }
   }
 }
 
