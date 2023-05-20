@@ -36,10 +36,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
   headerContainer: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   temperatureText: {
     fontSize: 48,
@@ -47,18 +49,20 @@ const styles = StyleSheet.create({
   },
   bodyContainer: {
     flex: 2,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    paddingLeft: '10%',
-    marginBottom: '10%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 48,
     color: '#fff',
+    textAlign: 'center',
+    marginBottom: 10,
   },
   subtitle: {
     fontSize: 24,
     color: '#fff',
+    textAlign: 'center',
   },
 });
 
