@@ -11,7 +11,6 @@ export default class App extends React.Component {
     weatherCondition: null,
     error: null,
     country: null,
-    name: null,
   };
 
   componentDidMount() {
@@ -72,7 +71,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { isLoading, temperature, weatherCondition, error, country, name } =
+    const { isLoading, temperature, weatherCondition, error, country } =
       this.state;
 
     return (
@@ -86,7 +85,6 @@ export default class App extends React.Component {
             temperature={temperature}
             weatherCondition={weatherCondition}
             country={country}
-            name={name}
           />
         )}
       </View>

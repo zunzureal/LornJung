@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import { weatherConditions } from '../utils/WeatherConditions';
 
 const Weather = ({ temperature, weatherCondition, country, name }) => {
@@ -13,6 +13,8 @@ const Weather = ({ temperature, weatherCondition, country, name }) => {
   const currentWeather =
     weatherConditions[weatherCondition] || fallbackWeather;
 
+  const weatherIconUrl = `http://openweathermap.org/img/w/${currentWeather.icon}.png`;
+
   return (
     <View
       style={[
@@ -24,6 +26,7 @@ const Weather = ({ temperature, weatherCondition, country, name }) => {
         <Text style={styles.temperatureText}>{temperature}°C</Text>
         <Text style={styles.nameText}>{name}</Text>
         <Text style={styles.countryText}>{country}</Text>
+        <Image source={{ uri: weatherIconUrl }} style={styles.weatherIcon} />
       </View>
       <View style={styles.bodyContainer}>
         <Text style={styles.title}>{currentWeather.title}</Text>
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   headerContainer: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -57,6 +60,10 @@ const styles = StyleSheet.create({
   countryText: {
     fontSize: 24,
     color: '#fff',
+  },
+  weatherIcon: {
+    width: 100,
+    height: 100,
   },
   bodyContainer: {
     flex: 2,
