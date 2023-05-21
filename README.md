@@ -26,10 +26,10 @@ This is final year 1 project in CPE121
 
 ## Authors
 
-- [@Punyapat Chanthakhun](https://github.com/zunzureal)
+- [@zunzureal](https://github.com/zunzureal)
+- [@jeagerism](https://github.com/jeagerism)
 
 
 ## Support
 
 For support, email zunzureal@gmail.com or message me in Facebook
-
