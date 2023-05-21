@@ -1,13 +1,13 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { weatherConditions } from '../utils/WeatherConditions';
+import React from "react";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { weatherConditions } from "../utils/WeatherConditions";
 
 const Weather = ({ temperature, weatherCondition, country, name }) => {
   const fallbackWeather = {
-    color: '#fff',
-    icon: 'weather-not-available',
-    title: 'Unknown',
-    subtitle: 'Sorry, weather information unavailable.',
+    color: "#fff",
+    icon: "weather-not-available",
+    title: "Unknown",
+    subtitle: "Sorry, weather information unavailable.",
   };
 
   const currentWeather = weatherConditions[weatherCondition] || fallbackWeather;
@@ -15,12 +15,7 @@ const Weather = ({ temperature, weatherCondition, country, name }) => {
   const weatherIconUrl = `http://openweathermap.org/img/w/${currentWeather.icon}.png`;
 
   return (
-    <View
-      style={[
-        styles.weatherContainer,
-        { backgroundColor: currentWeather.color },
-      ]}
-    >
+    <View>
       <View style={styles.headerContainer}>
         <Text style={styles.temperatureText}>{temperature}°C</Text>
         <Text style={styles.nameText}>{name}</Text>
@@ -38,48 +33,48 @@ const Weather = ({ temperature, weatherCondition, country, name }) => {
 const styles = StyleSheet.create({
   weatherContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
   headerContainer: {
     flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   temperatureText: {
-    fontSize: 48,
-    color: '#fff',
+    fontSize: "15%",
+    color: "#fff",
   },
   nameText: {
-    fontSize: 37,
-    color: '#fff',
-    marginBottom: 5,
+    fontSize: "15%",
+    color: "#fff",
+    marginBottom: "5%",
   },
   countryText: {
-    fontSize: 24,
-    color: '#fff',
+    fontSize: "15%",
+    color: "#fff",
   },
   weatherIcon: {
-    width: 100,
-    height: 100,
+    width: 75,
+    height: 75,
   },
   bodyContainer: {
     flex: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: "10%",
   },
   title: {
-    fontSize: 48,
-    color: '#fff',
-    textAlign: 'center',
-    marginBottom: 10,
+    fontSize: "15%",
+    color: "#fff",
+    textAlign: "center",
+    marginBottom: "10%",
   },
   subtitle: {
-    fontSize: 24,
-    color: '#fff',
-    textAlign: 'center',
+    fontSize: "15%",
+    color: "#fff",
+    textAlign: "center",
   },
 });
 
