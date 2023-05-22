@@ -11,12 +11,15 @@
   "dependencies": {
     "@babel/runtime": "^7.21.5",
     "@react-native-community/geolocation": "^3.0.6",
+    "date-fns": "^2.30.0",
     "expo": "~48.0.15",
     "expo-cli": "^6.3.7",
+    "expo-file-system": "~15.2.2",
     "expo-location": "~15.1.1",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.7",
+    "react-native-fs": "^2.20.0",
     "react-native-geolocation-service": "^5.3.1",
     "react-native-svg-uri": "^1.2.3"
   },

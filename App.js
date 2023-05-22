@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import { API_KEY } from './utils/WeatherAPIKey';
 import Weather from './components/Weather';
+import { format } from 'date-fns';
 
 export default class App extends React.Component {
   state = {
@@ -11,6 +12,7 @@ export default class App extends React.Component {
     weatherCondition: null,
     error: null,
     country: null,
+    localTime: null,
   };
 
   componentDidMount() {
@@ -49,19 +51,37 @@ export default class App extends React.Component {
 
   fetchWeather = (lat = 25, lon = 25) => {
     this.setState({ isLoading: true });
-
+  
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     )
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
+  
+        const timestamp = json.dt;
+        const timezoneOffset = json.timezone;
+  
+        const date = new Date((timestamp + timezoneOffset) * 1000); // Convert timestamp and offset to milliseconds
+  
+        const options = {
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: false,
+        };
+  
+        const localTime = date.toLocaleTimeString('en-US', options);
+  
+        console.log(localTime);
+  
         this.setState({
           isLoading: false,
           temperature: json.main.temp,
           weatherCondition: json.weather[0].main,
           country: json.sys.country,
           name: json.name,
+          humidity: json.main.humidity,
+          localTime,
         });
       })
       .catch((error) => {
@@ -69,9 +89,9 @@ export default class App extends React.Component {
         this.setState({ isLoading: false, error: 'Error Fetching Weather' });
       });
   };
-
+  
   render() {
-    const { isLoading, temperature, weatherCondition, error, country , name } =
+    const { isLoading, temperature, weatherCondition, error, country, name, humidity, localTime } =
       this.state;
 
     return (
@@ -86,6 +106,8 @@ export default class App extends React.Component {
             weatherCondition={weatherCondition}
             country={country}
             name={name}
+            humidity={humidity}
+            localTime={localTime}
           />
         )}
       </View>

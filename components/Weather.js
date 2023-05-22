@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { weatherConditions } from '../utils/WeatherConditions';
 
-const Weather = ({ temperature, weatherCondition, country, name }) => {
+const Weather = ({ temperature, weatherCondition, country, name , localTime }) => {
   const fallbackWeather = {
     color: '#fff',
     icon: 'weather-not-available',
@@ -25,6 +25,7 @@ const Weather = ({ temperature, weatherCondition, country, name }) => {
         <Text style={styles.temperatureText}>{temperature}°C</Text>
         <Text style={styles.nameText}>{name}</Text>
         <Text style={styles.countryText}>{country}</Text>
+        <Text style={styles.countryText}>{localTime}</Text>
         <Image source={{ uri: weatherIconUrl }} style={styles.weatherIcon} />
       </View>
       <View style={styles.bodyContainer}>
