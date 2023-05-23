@@ -14,6 +14,27 @@ const Weather = ({ temperature, weatherCondition, country, name , localTime }) =
 
   const weatherIconUrl = `http://openweathermap.org/img/w/${currentWeather.icon}.png`;
 
+  let titleText;
+  let subtitleText;
+
+  switch (true) {
+    case heatindex >= 40:
+      titleText = 'Dangerous Heat';
+      subtitleText = 'Stay indoors and keep cool.';
+      break;
+    case heatindex >= 30 && heatindex < 40:
+      titleText = 'Extreme Heat';
+      subtitleText = 'Take precautions to avoid heat-related illnesses.';
+      break;
+    case heatindex >= 25 && heatindex < 30:
+      titleText = 'High Heat';
+      subtitleText = 'Stay hydrated and find shade if possible.';
+      break;
+    default:
+      titleText = currentWeather.title;
+      subtitleText = currentWeather.subtitle;
+  }
+
   return (
     <View
       style={[
@@ -29,8 +50,8 @@ const Weather = ({ temperature, weatherCondition, country, name , localTime }) =
         <Image source={{ uri: weatherIconUrl }} style={styles.weatherIcon} />
       </View>
       <View style={styles.bodyContainer}>
-        <Text style={styles.title}>{currentWeather.title}</Text>
-        <Text style={styles.subtitle}>{currentWeather.subtitle}</Text>
+        <Text style={styles.title}>{titleText}</Text>
+        <Text style={styles.subtitle}>{subtitleText}</Text>
       </View>
     </View>
   );
