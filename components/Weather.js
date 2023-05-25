@@ -22,14 +22,22 @@ const Weather = ({ temperature, weatherCondition, country, name , localTime }) =
       titleText = 'Dangerous Heat';
       subtitleText = 'Stay indoors and keep cool.';
       break;
+      
     case heatindex >= 30 && heatindex < 40:
       titleText = 'Extreme Heat';
       subtitleText = 'Take precautions to avoid heat-related illnesses.';
       break;
+
     case heatindex >= 25 && heatindex < 30:
       titleText = 'High Heat';
       subtitleText = 'Stay hydrated and find shade if possible.';
       break;
+
+    case heatindex >= 0 && heatindex < 24:
+      titleText = 'Low Heat';
+      subtitleText = 'Low Heat Stay Safe';
+      break;
+
     default:
       titleText = currentWeather.title;
       subtitleText = currentWeather.subtitle;
