@@ -16,7 +16,8 @@ const Weather = ({ temperature, weatherCondition, country, name , localTime }) =
 
   let titleText;
   let subtitleText;
-
+  
+  //ทำเกี่ยวกับ Notification แจ้งเตือน Heat Index
   switch (true) {
     case heatindex >= 40:
       titleText = 'Dangerous Heat';
