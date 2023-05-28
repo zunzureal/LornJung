@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { weatherConditions } from '../utils/WeatherConditions';
 
-const Weather = ({ temperature, weatherCondition, country, name , localTime }) => {
+const Weather = ({ temperature, weatherCondition, country, name , localTime , heatindex}) => {
   const fallbackWeather = {
     color: '#fff',
     icon: 'weather-not-available',
@@ -19,19 +19,24 @@ const Weather = ({ temperature, weatherCondition, country, name , localTime }) =
   
   //ทำเกี่ยวกับ Notification แจ้งเตือน Heat Index
   switch (true) {
-    case heatindex >= 40:
-      titleText = 'Dangerous Heat';
-      subtitleText = 'Stay indoors and keep cool.';
+    case heatindex >= 125:
+      titleText = 'Extreame Danger';
+      subtitleText = 'Heat stroke highly likely';
       break;
       
-    case heatindex >= 30 && heatindex < 40:
-      titleText = 'Extreme Heat';
-      subtitleText = 'Take precautions to avoid heat-related illnesses.';
+    case heatindex >= 103 && heatindex < 124:
+      titleText = 'Danger';
+      subtitleText = 'Heat cramps or heat exhaustion likely, and heat stroke possible with prolonged exposure and/or physical activity';
       break;
 
-    case heatindex >= 25 && heatindex < 30:
-      titleText = 'High Heat';
-      subtitleText = 'Stay hydrated and find shade if possible.';
+    case heatindex >= 90 && heatindex < 103:
+      titleText = 'Extreme Caution';
+      subtitleText = 'Heat stroke, heat cramps, or heat exhaustion possible with prolonged exposure and/or physical activity';
+      break;
+
+    case heatindex >= 80 && heatindex < 90;
+      titleText = 'Caution';
+      subtitleText = 'Fatigue possible with prolonged exposure and/or physical activity';
       break;
 
     case heatindex >= 0 && heatindex < 24:
